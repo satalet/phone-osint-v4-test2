@@ -56,6 +56,7 @@ function buildLinks(number) {
     document.getElementById("facebookLink").href = `https://www.facebook.com/search/top?q=${clean}`;
     document.getElementById("linkedinLink").href = `https://www.linkedin.com/search/results/all/?keywords=${clean}`;
     document.getElementById("xLink").href = `https://x.com/search?q=${clean}`;
+    document.getElementById('tiktokLink').href = `https://www.tiktok.com/@${clean}`;
     document.getElementById("archiveLink").href = `https://web.archive.org/web/*/${clean}`;
 }
 
