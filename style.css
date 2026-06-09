@@ -151,15 +151,18 @@ cursor:pointer;
 }
 /* أضف هذا الكود في آخر ملف style.css 👇 */
 .dev-signature {
-    font-size: 0.9rem; /* حجم خط صغير وأنيق كـ توقيع */
-    color: #00bcd4; /* لون أزرق/سيان متألق يناسب الكالي */
-    margin-top: 10px;
-    margin-bottom: 5px;
-    text-transform: uppercase; /* حروف كبيرة (اختياري) */
-    letter-spacing: 1.5px; /* تباعد بين الحروف لإعطاء شكل فخم */
-    text-shadow: 0 0 8px rgba(0, 188, 212, 0.7); /* تألق (Glow) خفيف */
+    font-size: 0.9rem;
+    color: #00bcd4;
+    margin: 15px auto;      /* المسافة العمودية والسنتر الأفقي */
+    padding: 8px 0;
+    text-align: center;     /* توسيط النص */
+    width: 90%;             /* يضمن إنه ما يلزق بالأطراف */
+    max-width: 400px;       /* عشان ما يصير عريض زيادة بالشاشات الكبيرة */
+    border-top: 1px solid rgba(0, 188, 212, 0.3);
+    border-bottom: 1px solid rgba(0, 188, 212, 0.3);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 8px rgba(0, 188, 212, 0.7);
     font-weight: bold;
-    text-align: center; /* توسيط التوقيع */
-    border-top: 1px solid rgba(0, 188, 212, 0.3); /* خط خفيف جداً فوق التوقيع للفصل */
-    padding-top: 5px;
 }
