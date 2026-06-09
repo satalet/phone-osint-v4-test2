@@ -1,17 +1,22 @@
 {
-"name": "Phone Intelligence v4 TEST",
-"short_name": "PhoneIntel",
-"start_url": "./",
-"display": "standalone",
-"background_color": "#050505",
-"theme_color": "#00ff88",
-"orientation": "portrait",
-"description": "Phone Intelligence Toolkit",
-"icons": [
-{
-"src": "favicon.png",
-"sizes": "192x192",
-"type": "image/png"
+  "name": "Phone Intelligence v4",
+  "short_name": "PhoneIntel",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#00ff88",
+  "orientation": "portrait",
+  "description": "Cyber Intelligence Toolkit"
 }
-]
-}
+
+
+
+
+
+
+
+
+
+
+
+
