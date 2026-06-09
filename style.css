@@ -151,18 +151,25 @@ cursor:pointer;
 }
 /* أضف هذا الكود في آخر ملف style.css 👇 */
 .dev-signature {
-    font-size: 0.9rem;
-    color: #00bcd4;
-    margin: 15px auto;      /* المسافة العمودية والسنتر الأفقي */
-    padding: 8px 0;
-    text-align: center;     /* توسيط النص */
-    width: 90%;             /* يضمن إنه ما يلزق بالأطراف */
-    max-width: 400px;       /* عشان ما يصير عريض زيادة بالشاشات الكبيرة */
-    border-top: 1px solid rgba(0, 188, 212, 0.3);
-    border-bottom: 1px solid rgba(0, 188, 212, 0.3);
+    font-size: 1rem;
+    color: #ffffff; /* اللون الأبيض للنص بيخلي التوهج يبين أوضح */
+    margin: 15px auto;
+    padding: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid #00f2ff; /* إطار خفيف */
     display: block;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 8px rgba(0, 188, 212, 0.7);
     font-weight: bold;
+    
+    /* سحر التوهج السايبراني هون */
+    text-shadow: 0 0 5px #00f2ff, 
+                 0 0 10px #00f2ff, 
+                 0 0 20px #00f2ff, 
+                 0 0 40px #00f2ff;
+    
+    /* إضافة لمسة إضاءة للخلفية كمان */
+    background: rgba(0, 242, 255, 0.1);
+    border-radius: 5px;
 }
