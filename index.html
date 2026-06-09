@@ -1,128 +1,67 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Phone Intelligence v4 TEST</title>
-
-<link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.11.11/libphonenumber-js.min.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Intelligence v4</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <div class="container">
+        <div class="logo-box">
+            <h1>Phone Intelligence v4</h1>
+            <h2>Cyber Intelligence Toolkit</h2>
+            <p>أداة البحث المتقدم عن الأرقام</p>
+        </div>
 
-<div class="container">
+        <div class="card">
+            <label>اختر الدولة:</label>
+            <select id="countrySelect">
+                <option value="PS">فلسطين (+970)</option>
+                <option value="JO">الأردن (+962)</option>
+                <option value="SA">السعودية (+966)</option>
+                <option value="EG">مصر (+20)</option>
+                <option value="IL">إسرائيل (+972)</option>
+                <option value="OTHER">دولي</option>
+            </select>
 
-```
-<div class="logo-box">
-    <h1>📱 Phone Intelligence</h1>
-    <h2>v4 TEST - Build 001</h2>
-    <p>Cyber Intelligence Toolkit</p>
-</div>
+            <label>رقم الهاتف:</label>
+            <input type="text" id="phoneInput" placeholder="أدخل الرقم هنا...">
 
-<div class="card">
+            <button id="analyzeBtn">تحليل وبحث 🔍</button>
+        </div>
 
-    <label>رقم الهاتف</label>
+        <div id="resultBox" class="card hidden">
+            <h3>نتائج التحليل:</h3>
+            <div class="result-item"><span>الحالة:</span> <span id="validity"></span></div>
+            <div class="result-item"><span>الدولة:</span> <span id="country"></span></div>
+            <div class="result-item"><span>الرقم المنسق:</span> <span id="formatted"></span></div>
+            <div class="result-item"><span>الرقم الخام:</span> <span id="rawNumber"></span></div>
+        </div>
 
-    <input
-        type="text"
-        id="phoneInput"
-        placeholder="0591234567 أو +970591234567">
+        <div id="linksBox" class="card hidden">
+            <h3>روابط البحث (OSINT):</h3>
+            <div class="links-grid">
+                <a id="waLink" target="_blank">WhatsApp</a>
+                <a id="truecallerLink" target="_blank">Truecaller</a>
+                <a id="googleLink" target="_blank">Google</a>
+                <a id="tiktokLink" target="_blank">TikTok</a>
+                <a id="instagramLink" target="_blank">Instagram</a>
+                <a id="facebookLink" target="_blank">Facebook</a>
+                <a id="linkedinLink" target="_blank">LinkedIn</a>
+                <a id="xLink" target="_blank">X (Twitter)</a>
+                <a id="archiveLink" target="_blank">Web Archive</a>
+            </div>
+        </div>
 
-    <label>الدولة الافتراضية</label>
-
-    <select id="countrySelect">
-
-        <option value="PS">🇵🇸 فلسطين</option>
-        <option value="JO">🇯🇴 الأردن</option>
-        <option value="SA">🇸🇦 السعودية</option>
-        <option value="EG">🇪🇬 مصر</option>
-        <option value="IL">🇮🇱 إسرائيل</option>
-
-    </select>
-
-    <button id="analyzeBtn">
-        🔎 Analyze Number
-    </button>
-
-</div>
-
-<div id="resultBox" class="card hidden">
-
-    <h3>نتيجة التحليل</h3>
-
-    <div class="result-item">
-        <span>الحالة:</span>
-        <span id="validity"></span>
+        <div class="card">
+            <h3>سجل البحث:</h3>
+            <ul id="historyList"></ul>
+        </div>
     </div>
 
-    <div class="result-item">
-        <span>الدولة:</span>
-        <span id="country"></span>
-    </div>
-
-    <div class="result-item">
-        <span>الصيغة الدولية:</span>
-        <span id="formatted"></span>
-    </div>
-
-    <div class="result-item">
-        <span>الرقم:</span>
-        <span id="rawNumber"></span>
-    </div>
-
-</div>
-
-<div id="linksBox" class="card hidden">
-
-    <h3>روابط البحث</h3>
-
-    <div class="links-grid">
-
-        <a id="googleLink" target="_blank">Google</a>
-
-        <a id="truecallerLink" target="_blank">Truecaller</a>
-
-        <a id="waLink" target="_blank">WhatsApp</a>
-
-        <a id="tiktokLink" target="_blank">TikTok</a>
-
-        <a id="instagramLink" target="_blank">Instagram</a>
-
-        <a id="facebookLink" target="_blank">Facebook</a>
-
-        <a id="linkedinLink" target="_blank">LinkedIn</a>
-
-        <a id="xLink" target="_blank">X</a>
-
-        <a id="archiveLink" target="_blank">Archive</a>
-
-    </div>
-
-</div>
-
-<div class="card">
-
-    <h3>آخر عمليات البحث</h3>
-
-    <ul id="historyList"></ul>
-
-</div>
-```
-
-</div>
-
-<script src="app.js"></script>
-
+    <script src="app.js"></script>
 </body>
 </html>
