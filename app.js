@@ -18,9 +18,7 @@ function loadHistory() {
     history.forEach(number => {
         const li = document.createElement("li");
         li.textContent = number;
-        li.onclick = () => {
-            phoneInput.value = number;
-        };
+        li.onclick = () => { phoneInput.value = number; };
         historyList.appendChild(li);
     });
 }
@@ -36,22 +34,21 @@ function saveHistory(number) {
 
 function buildLinks(number) {
     const clean = number.replace("+", "");
+    const countryCode = countrySelect.value.toLowerCase();
     
-    // هون بنسحب كود الدولة اللي اخترتها من القائمة المنسدلة وبنحوله لحروف صغيرة
-    let countryCode = countrySelect.value.toLowerCase();
+    // 1. بحث جوجل الشامل (دولي + محلي)
+    let localVariant = clean.startsWith(countrySelect.value) ? clean.substring(countrySelect.value.length) : clean;
+    document.getElementById("googleLink").href = `https://www.google.com/search?q=%22${clean}%22+OR+%22${localVariant}%22+OR+%220${localVariant}%22`;
     
-    // احتياط: لو اخترت "دولي" (OTHER) رح نخليه يوجهه لـ ps بشكل افتراضي عشان ما يعطي 404
+    // 2. تروكولر ذكي (دولي أو مخصص)
     if (countryCode === "other") {
-        countryCode = "ps"; 
+        document.getElementById("truecallerLink").href = `https://www.truecaller.com/search/${encodeURIComponent(clean)}`;
+    } else {
+        document.getElementById("truecallerLink").href = `https://www.truecaller.com/search/${countryCode}/${clean}`;
     }
-
-    document.getElementById("googleLink").href = `https://www.google.com/search?q="${number}"`;
     
-    // رابط تروكولر المحدث مع كود الدولة المباشر
-    document.getElementById("truecallerLink").href = `https://www.truecaller.com/search/${countryCode}/${encodeURIComponent(number)}`;
-    
+    // 3. باقي الروابط
     document.getElementById("waLink").href = `https://wa.me/${clean}`;
-    document.getElementById("truecallerLink").href = `https://www.truecaller.com/search/${countryCode}/${clean}`;
     document.getElementById("instagramLink").href = `https://www.google.com/search?q=site:instagram.com+"${clean}"`;
     document.getElementById("facebookLink").href = `https://www.facebook.com/search/top?q=${clean}`;
     document.getElementById("linkedinLink").href = `https://www.linkedin.com/search/results/all/?keywords=${clean}`;
@@ -66,12 +63,10 @@ function normalizeNumber(number) {
 
     if (cleaned.startsWith("+")) return cleaned;
 
-    if (countryVal === "PS" && cleaned.startsWith("0")) return "+970" + cleaned.substring(1);
-    if (countryVal === "JO" && cleaned.startsWith("0")) return "+962" + cleaned.substring(1);
-    if (countryVal === "SA" && cleaned.startsWith("0")) return "+966" + cleaned.substring(1);
-    if (countryVal === "EG" && cleaned.startsWith("0")) return "+20" + cleaned.substring(1);
-    if (countryVal === "IL" && cleaned.startsWith("0")) return "+972" + cleaned.substring(1);
-
+    const maps = { "PS": "+970", "JO": "+962", "SA": "+966", "EG": "+20", "IL": "+972" };
+    if (maps[countryVal] && cleaned.startsWith("0")) {
+        return maps[countryVal] + cleaned.substring(1);
+    }
     return cleaned;
 }
 
@@ -83,7 +78,6 @@ analyzeBtn.addEventListener("click", () => {
     }
 
     number = normalizeNumber(number);
-
     validity.textContent = "✓ جاهز للبحث";
     country.textContent = countrySelect.options[countrySelect.selectedIndex].text;
     formatted.textContent = number;
