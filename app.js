@@ -34,20 +34,26 @@ function saveHistory(number) {
 
 function buildLinks(number) {
     const clean = number.replace("+", "");
-    const countryCode = countrySelect.value.toLowerCase();
+    const countryVal = countrySelect.value;
+    const countryCodes = { "PS": "970", "JO": "962", "SA": "966", "EG": "20", "IL": "972" };
+    const code = countryCodes[countryVal] || "";
+
+    // استخراج الرقم المحلي الصافي
+    let localVariant = (code && clean.startsWith(code)) ? clean.substring(code.length) : clean;
+
+    // رابط جوجل الشامل (استخدام encodeURIComponent يضمن عمل الـ OR بشكل صحيح)
+    let googleQuery = `"${clean}" OR "0${localVariant}" OR "${localVariant}"`;
+    document.getElementById("googleLink").href = `https://www.google.com/search?q=${encodeURIComponent(googleQuery)}`;
     
-    // 1. بحث جوجل الشامل (دولي + محلي)
-    let localVariant = clean.startsWith(countrySelect.value) ? clean.substring(countrySelect.value.length) : clean;
-    document.getElementById("googleLink").href = `https://www.google.com/search?q=%22${clean}%22+OR+%22${localVariant}%22+OR+%220${localVariant}%22`;
-    
-    // 2. تروكولر ذكي (دولي أو مخصص)
+    // تروكولر
+    const countryCode = countryVal.toLowerCase();
     if (countryCode === "other") {
         document.getElementById("truecallerLink").href = `https://www.truecaller.com/search/${encodeURIComponent(clean)}`;
     } else {
         document.getElementById("truecallerLink").href = `https://www.truecaller.com/search/${countryCode}/${clean}`;
     }
     
-    // 3. باقي الروابط
+    // باقي الروابط
     document.getElementById("waLink").href = `https://wa.me/${clean}`;
     document.getElementById("instagramLink").href = `https://www.google.com/search?q=site:instagram.com+"${clean}"`;
     document.getElementById("facebookLink").href = `https://www.facebook.com/search/top?q=${clean}`;
