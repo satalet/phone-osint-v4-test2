@@ -53,12 +53,17 @@ function buildLinks(number) {
         document.getElementById("truecallerLink").href = `https://www.truecaller.com/search/${countryCode}/${clean}`;
     }
     
-    // باقي الروابط
+// باقي الروابط (تم التعديل لتكون أشمل)
     document.getElementById("waLink").href = `https://wa.me/${clean}`;
-    document.getElementById("instagramLink").href = `https://www.google.com/search?q=site:instagram.com+"${clean}"`;
-    document.getElementById("facebookLink").href = `https://www.facebook.com/search/top?q=${clean}`;
-    document.getElementById("linkedinLink").href = `https://www.linkedin.com/search/results/all/?keywords=${clean}`;
+    // إنستغرام: البحث عن الرقم ككلمة مفتاحية عامة
+    document.getElementById("instagramLink").href = `https://www.google.com/search?q=site:instagram.com+${clean}`;
+    // فيسبوك: البحث العام بالرقم
+    document.getElementById("facebookLink").href = `https://www.facebook.com/search/people/?q=${clean}`;
+    // لينكد إن: البحث عن الرقم في الأشخاص
+    document.getElementById("linkedinLink").href = `https://www.linkedin.com/search/results/people/?keywords=${clean}`;
+    // إكس: البحث العام
     document.getElementById("xLink").href = `https://x.com/search?q=${clean}`;
+    // تيك توك: البحث المباشر
     document.getElementById('tiktokLink').href = `https://www.tiktok.com/search?q=${clean}`;
     document.getElementById("archiveLink").href = `https://web.archive.org/web/*/${clean}`;
 }
