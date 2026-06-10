@@ -78,31 +78,40 @@ function buildLinks(number) {
   const clean = number.replace("+", "");
   const countryVal = countrySelect.value;
   const code = COUNTRY_CODES[countryVal] || "";
-
   const localVariant = (code && clean.startsWith(code))
     ? clean.substring(code.length)
     : clean;
 
-  const googleQuery = `"${clean}" OR "0${localVariant}" OR "${localVariant}"`;
-  const encodedGoogle = encodeURIComponent(googleQuery);
+  // query شامل لكل الصيغ
+  const fullQuery = `"${clean}" OR "0${localVariant}" OR "${localVariant}"`;
+  const encodedFull = encodeURIComponent(fullQuery);
   const encodedClean = encodeURIComponent(clean);
 
   document.getElementById("googleLink").href =
-    `https://www.google.com/search?q=${encodedGoogle}`;
+    `https://www.google.com/search?q=${encodedFull}`;
 
   const tcCountry = (countryVal && countryVal !== "other")
-    ? `${countryVal.toLowerCase()}/`
-    : "";
+    ? `${countryVal.toLowerCase()}/` : "";
   document.getElementById("truecallerLink").href =
     `https://www.truecaller.com/search/${tcCountry}${encodedClean}`;
 
-  document.getElementById("waLink").href       = `https://wa.me/${clean}`;
-  document.getElementById("instagramLink").href = `https://www.google.com/search?q=site:instagram.com+${encodedClean}`;
-  document.getElementById("facebookLink").href  = `https://www.facebook.com/search/posts/?q=${encodedClean}`;
-  document.getElementById("linkedinLink").href  = `https://www.linkedin.com/search/results/all/?keywords=${encodedClean}`;
-  document.getElementById("xLink").href         = `https://x.com/search?q=${encodedClean}`;
-  document.getElementById("tiktokLink").href    = `https://www.tiktok.com/search?q=${encodedClean}`;
-  document.getElementById("archiveLink").href   = `https://web.archive.org/web/*/${encodedClean}`;
+  document.getElementById("waLink").href =
+    `https://wa.me/${clean}`;
+
+  // إنستغرام، فيسبوك، X، تيك توك — كلهم بالصيغ الثلاث
+  document.getElementById("instagramLink").href =
+    `https://www.google.com/search?q=site:instagram.com+${encodedFull}`;
+  document.getElementById("facebookLink").href =
+    `https://www.facebook.com/search/posts/?q=${encodedFull}`;
+  document.getElementById("xLink").href =
+    `https://x.com/search?q=${encodedFull}`;
+  document.getElementById("tiktokLink").href =
+    `https://www.tiktok.com/search?q=${encodedFull}`;
+
+  document.getElementById("linkedinLink").href =
+    `https://www.linkedin.com/search/results/all/?keywords=${encodedFull}`;
+  document.getElementById("archiveLink").href =
+    `https://web.archive.org/web/*/${encodedClean}`;
 }
 
 // ====== Main Analyze ======
