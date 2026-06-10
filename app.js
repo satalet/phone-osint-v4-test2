@@ -102,7 +102,7 @@ function buildLinks(number) {
   document.getElementById("instagramLink").href =
     `https://www.google.com/search?q=site:instagram.com+${encodedFull}`;
   document.getElementById("facebookLink").href =
-    `https://www.facebook.com/search/posts/?q=${encodedFull}`;
+    `https://www.facebook.com/search/posts/?q=0${localVariant}`;
   document.getElementById("xLink").href =
     `https://x.com/search?q=${encodedFull}`;
   document.getElementById("tiktokLink").href =
